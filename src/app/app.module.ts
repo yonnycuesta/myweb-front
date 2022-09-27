@@ -14,6 +14,8 @@ import { CategoryComponent } from './components/admin/category/category.componen
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
+import { CategoryModalComponent } from './components/admin/category/category-modal/category-modal.component';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -25,16 +27,22 @@ import { MaterialModule } from './material/material.module';
     DashboardComponent,
     LoginPageComponent,
     RegisterPageComponent,
-    CategoryComponent
+    CategoryComponent,
+    CategoryModalComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    ToastrModule.forRoot({
+      timeOut: 5000,
+      progressBar: true,
+      positionClass: 'toast-bottom-right',
+    }),
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
