@@ -1,27 +1,29 @@
-import { MatPaginator } from '@angular/material/paginator';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatTableDataSource } from '@angular/material/table';
-import { CategoryService } from 'src/app/services/category.service';
-import { MatSort } from '@angular/material/sort';
 import { MatDialog } from '@angular/material/dialog';
-import { CategoryModalComponent } from './category-modal/category-modal.component';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
+import { StatuService } from 'src/app/services/statu.service';
+import { StatuModalComponent } from './statu-modal/statu-modal.component';
+
 @Component({
-  selector: 'app-category',
-  templateUrl: './category.component.html',
-  styleUrls: ['./category.component.scss'],
+  selector: 'app-statu',
+  templateUrl: './statu.component.html',
+  styleUrls: ['./statu.component.scss']
 })
-export class CategoryComponent implements OnInit {
+export class StatuComponent implements OnInit {
+
   displayedColumns: string[] = ['name', 'actions'];
   dataSource!: MatTableDataSource<any>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private dataService: CategoryService, public dialog: MatDialog) {}
+  constructor(private dataService: StatuService, public dialog: MatDialog) {}
 
   ngOnInit(): void {
-    this.getAllCategories();
+    this.getAllStatus();
   }
-  getAllCategories() {
+  getAllStatus() {
     this.dataService.all().subscribe((data: any) => {
       this.dataSource = new MatTableDataSource(data.data);
       this.dataSource.paginator = this.paginator;
@@ -37,30 +39,32 @@ export class CategoryComponent implements OnInit {
   }
 
   openDialog() {
-    const dialogRef = this.dialog.open(CategoryModalComponent, {
+    const dialogRef = this.dialog.open(StatuModalComponent, {
       width: '250px',
     });
     dialogRef.afterClosed().subscribe((result) => {
       if (result === 'save') {
-        this.getAllCategories();
+        this.getAllStatus();
       }
     });
   }
 
-  editCategory(element: any) {
-    const dialogRef = this.dialog.open(CategoryModalComponent, {
+  editStatu(element: any) {
+    const dialogRef = this.dialog.open(StatuModalComponent, {
       width: '250px',
       data: element,
     });
     dialogRef.afterClosed().subscribe((result) => {
       if (result === 'update') {
-        this.getAllCategories();
+        this.getAllStatus();
       }
     });
   }
-  deleteCategory(id: any) {
+  deleteStatu(id: any) {
     this.dataService.delete(id).subscribe((data: any) => {
-      this.getAllCategories();
+      this.getAllStatus();
     });
   }
+
+
 }

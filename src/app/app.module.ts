@@ -16,6 +16,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
 import { CategoryModalComponent } from './components/admin/category/category-modal/category-modal.component';
 import { ToastrModule } from 'ngx-toastr';
+import { StatuComponent } from './components/admin/statu/statu.component';
+import { StatuModalComponent } from './components/admin/statu/statu-modal/statu-modal.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +31,8 @@ import { ToastrModule } from 'ngx-toastr';
     RegisterPageComponent,
     CategoryComponent,
     CategoryModalComponent,
+    StatuComponent,
+    StatuModalComponent,
   ],
   imports: [
     BrowserModule,

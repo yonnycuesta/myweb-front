@@ -2,29 +2,29 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
-import { CategoryService } from 'src/app/services/category.service';
+import { StatuService } from 'src/app/services/statu.service';
 
 @Component({
-  selector: 'app-category-modal',
-  templateUrl: './category-modal.component.html',
-  styleUrls: ['./category-modal.component.scss'],
+  selector: 'app-statu-modal',
+  templateUrl: './statu-modal.component.html',
+  styleUrls: ['./statu-modal.component.scss'],
 })
-export class CategoryModalComponent implements OnInit {
-  titleModal = 'Agregar Categoria';
+export class StatuModalComponent implements OnInit {
+  titleModal = 'Agregar Estado';
   optionBtn: string = 'Guardar';
-  categoryForm!: FormGroup;
+  statuForm!: FormGroup;
   submitted = false;
   dataResponse: any;
   constructor(
-    public dialogRef: MatDialogRef<CategoryModalComponent>,
+    public dialogRef: MatDialogRef<StatuModalComponent>,
     private fb: FormBuilder,
     @Inject(MAT_DIALOG_DATA) public editData: any,
-    private caService: CategoryService,
+    private stService: StatuService,
     private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
-    this.categoryForm = this.fb.group({
+    this.statuForm = this.fb.group({
       name: [
         '',
         [
@@ -36,29 +36,28 @@ export class CategoryModalComponent implements OnInit {
     });
 
     if (this.editData) {
-      this.titleModal = 'Editar Categoria';
+      this.titleModal = 'Editar Estado';
       this.optionBtn = 'Actualizar';
-      this.categoryForm.patchValue(this.editData);
+      this.statuForm.patchValue(this.editData);
     }
   }
 
   get f() {
-    return this.categoryForm.controls;
+    return this.statuForm.controls;
   }
-  addCategory() {
+  addStatu() {
     this.submitted = true;
     if (!this.editData) {
-      if (this.categoryForm.invalid) {
+      if (this.statuForm.invalid) {
         return;
       }
-      this.caService.store(this.categoryForm.value).subscribe((resp: any) => {
+      this.stService.store(this.statuForm.value).subscribe((resp: any) => {
         this.dataResponse = resp;
         if (this.dataResponse.code === 200) {
           this.toastr.success(
             JSON.stringify(this.dataResponse.message),
             JSON.stringify(this.dataResponse.status)
           );
-          
         } else if (this.dataResponse.code === 300) {
           this.toastr.warning(
             JSON.stringify(this.dataResponse.message),
@@ -71,17 +70,17 @@ export class CategoryModalComponent implements OnInit {
           );
         }
         this.dialogRef.close('save');
-        this.categoryForm.reset();
+        this.statuForm.reset();
         this.submitted = false;
       });
     } else {
-      this.updateCategory();
+      this.updatestatu();
     }
   }
 
-  updateCategory() {
-    this.caService
-      .update(this.editData.id, this.categoryForm.value)
+  updatestatu() {
+    this.stService
+      .update(this.editData.id, this.statuForm.value)
       .subscribe((data: any) => {
         this.toastr.warning(data.message, 'Exito');
         this.dialogRef.close('update');

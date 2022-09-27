@@ -1,0 +1,24 @@
+<div mat-dialog-content>
+    <h2>{{titleModal}}</h2>
+    <form [formGroup]="statuForm">
+      <mat-form-field appearance="fill">
+          <mat-label>Ingresar estado</mat-label>
+          <input matInput formControlName="name" type="text" [ngClass]="{'is-invalid' : submitted && f['name'].errors}">
+          <div *ngIf="submitted && f['name'].errors" class="invalid-feedback">
+              <div *ngIf="f['name'].errors['required']">
+                  Se requiere el nombre
+              </div>
+              <div *ngIf="f['name'].errors['minlength']">
+                El minimo de caracter es 3
+              </div>
+              <div *ngIf="f['name'].errors['maxlength']">
+                El máximo de caracter es 50
+              </div>
+              </div>
+      </mat-form-field>
+    </form>
+  </div>
+  <div mat-dialog-actions class="mat-card-footer">
+    <button mat-button (click)="addStatu()">{{optionBtn}}</button>
+  </div>
+  
