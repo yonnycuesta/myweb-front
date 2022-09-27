@@ -18,6 +18,8 @@ import { CategoryModalComponent } from './components/admin/category/category-mod
 import { ToastrModule } from 'ngx-toastr';
 import { StatuComponent } from './components/admin/statu/statu.component';
 import { StatuModalComponent } from './components/admin/statu/statu-modal/statu-modal.component';
+import { TabComponent } from './components/admin/tab/tab.component';
+import { TabModalComponent } from './components/admin/tab/tab-modal/tab-modal.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +35,8 @@ import { StatuModalComponent } from './components/admin/statu/statu-modal/statu-
     CategoryModalComponent,
     StatuComponent,
     StatuModalComponent,
+    TabComponent,
+    TabModalComponent,
   ],
   imports: [
     BrowserModule,

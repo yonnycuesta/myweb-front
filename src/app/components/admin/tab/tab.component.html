@@ -1,10 +1,10 @@
 <main id="main" class="main">
     <div class="pagetitle">
-      <h1>Status</h1>
+      <h1>Tabs</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
-          <li class="breadcrumb-item active">Status</li>
+          <li class="breadcrumb-item active">Tabs</li>
         </ol>
       </nav>
     </div>
@@ -16,6 +16,7 @@
               <mat-label>Filter</mat-label>
               <input matInput (keyup)="applyFilter($event)" #input />
             </mat-form-field>
+  
             <mat-card class="example-card">
               <mat-card-header>
                 <button mat-raised-button (click)="openDialog()" class="btn-add">
@@ -41,14 +42,14 @@
                         <button
                           mat-icon-button
                           color="primary"
-                          (click)="editStatu(element)"
+                          (click)="editTab(element)"
                         >
                           <mat-icon>edit</mat-icon>
                         </button>
                         <button
                           mat-icon-button
                           color="warn"
-                          (click)="deleteStatu(element.id)"
+                          (click)="deleteTab(element.id)"
                         >
                           <mat-icon>delete</mat-icon>
                         </button>
