@@ -56,17 +56,17 @@ export class TabModalComponent implements OnInit {
         if (this.dataResponse.code === 200) {
           this.toastr.success(
             JSON.stringify(this.dataResponse.message),
-            JSON.stringify(this.dataResponse.Tabs)
+            JSON.stringify(this.dataResponse.status)
           );
         } else if (this.dataResponse.code === 300) {
           this.toastr.warning(
             JSON.stringify(this.dataResponse.message),
-            JSON.stringify(this.dataResponse.Tabs)
+            JSON.stringify(this.dataResponse.status)
           );
         } else {
           this.toastr.error(
             JSON.stringify(this.dataResponse.message),
-            JSON.stringify(this.dataResponse.Tabs)
+            JSON.stringify(this.dataResponse.status)
           );
         }
         this.dialogRef.close('save');

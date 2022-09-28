@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AwardComponent } from './components/admin/award/award.component';
 import { CategoryComponent } from './components/admin/category/category.component';
 import { StatuComponent } from './components/admin/statu/statu.component';
 import { TabComponent } from './components/admin/tab/tab.component';
@@ -17,9 +18,10 @@ const routes: Routes = [
   },
   { path: 'register', component: RegisterPageComponent },
   { path: 'login', component: LoginPageComponent },
-  { path: 'category', component: CategoryComponent },
-  { path: 'statu', component: StatuComponent },
-  { path: 'tab', component: TabComponent },
+  { path: 'categories', component: CategoryComponent },
+  { path: 'status', component: StatuComponent },
+  { path: 'tabs', component: TabComponent },
+  { path: 'awards', component: AwardComponent },
 
 ];
 
