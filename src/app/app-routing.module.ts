@@ -1,3 +1,4 @@
+import { AuthGuard } from './guards/auth.guard';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AwardComponent } from './components/admin/award/award.component';
@@ -14,15 +15,23 @@ const routes: Routes = [
   { path: '', component: HomeComponent },
   {
     path: 'dashboard',
-    component: DashboardComponent
+    component: DashboardComponent,
+    canActivate: [AuthGuard],
   },
-  { path: 'register', component: RegisterPageComponent },
+  {
+    path: 'register',
+    component: RegisterPageComponent,
+    canActivate: [AuthGuard],
+  },
   { path: 'login', component: LoginPageComponent },
-  { path: 'categories', component: CategoryComponent },
-  { path: 'status', component: StatuComponent },
-  { path: 'tabs', component: TabComponent },
-  { path: 'awards', component: AwardComponent },
-
+  {
+    path: 'categories',
+    component: CategoryComponent,
+    canActivate: [AuthGuard],
+  },
+  { path: 'status', component: StatuComponent, canActivate: [AuthGuard] },
+  { path: 'tabs', component: TabComponent, canActivate: [AuthGuard] },
+  { path: 'awards', component: AwardComponent, canActivate: [AuthGuard] },
 ];
 
 @NgModule({
