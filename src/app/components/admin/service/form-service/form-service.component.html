@@ -1,0 +1,29 @@
+<form class="example-form" [formGroup]="serviceForm" (ngSubmit)="addService()">
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Nombre</mat-label>
+    <input matInput formControlName="name" />
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Icono</mat-label>
+    <input matInput formControlName="icon" />
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Estados</mat-label>
+    <mat-select formControlName="status_id">
+      <mat-option *ngFor="let statu of status" [value]="statu.id">{{
+        statu.name
+      }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Descripción</mat-label>
+    <textarea matInput formControlName="description"></textarea>
+  </mat-form-field>
+
+  <td style="padding: 10px">
+    <button mat-raised-button color="primary" type="submit">Guardar</button>
+  </td>
+</form>

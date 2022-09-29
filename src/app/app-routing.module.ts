@@ -9,6 +9,7 @@ import { LoginPageComponent } from './components/frontend/login-page/login-page.
 import { RegisterPageComponent } from './components/frontend/register-page/register-page.component';
 import { HomeComponent } from './home/home.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { ServiceComponent } from './components/admin/service/service.component';
 
 const routes: Routes = [
   // { path: '**', redirectTo: 'dashboard', pathMatch: 'full' },
@@ -32,6 +33,7 @@ const routes: Routes = [
   { path: 'status', component: StatuComponent, canActivate: [AuthGuard] },
   { path: 'tabs', component: TabComponent, canActivate: [AuthGuard] },
   { path: 'awards', component: AwardComponent, canActivate: [AuthGuard] },
+  { path: 'services', component: ServiceComponent, canActivate: [AuthGuard] },
 ];
 
 @NgModule({

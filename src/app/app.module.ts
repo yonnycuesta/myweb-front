@@ -21,6 +21,8 @@ import { StatuModalComponent } from './components/admin/statu/statu-modal/statu-
 import { TabComponent } from './components/admin/tab/tab.component';
 import { TabModalComponent } from './components/admin/tab/tab-modal/tab-modal.component';
 import { AwardComponent } from './components/admin/award/award.component';
+import { ServiceComponent } from './components/admin/service/service.component';
+import { FormServiceComponent } from './components/admin/service/form-service/form-service.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +41,8 @@ import { AwardComponent } from './components/admin/award/award.component';
     TabComponent,
     TabModalComponent,
     AwardComponent,
+    ServiceComponent,
+    FormServiceComponent,
   ],
   imports: [
     BrowserModule,
