@@ -3,6 +3,7 @@ import { FormGroup } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { ToastrService } from 'ngx-toastr';
 import { OwnService } from 'src/app/services/own.service';
 
 @Component({
@@ -15,16 +16,14 @@ export class ServiceComponent implements OnInit {
   dataSource!: MatTableDataSource<any>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-  serviceForm!: FormGroup;
-  optionBtn: string = 'Agregar';
-  status: any[] = [];
-  dataResponse: any;
-  submitted: boolean = false;
-  isEdit: boolean = false;
-  idAward: string = '';
-  addOption: boolean = false;
 
-  constructor(private dataService: OwnService,) { 
+  dataResponse: any;
+  addOption: boolean = false;
+  updateOption: boolean = false;
+  dataSent: any[] = [];
+
+  constructor(private dataService: OwnService,
+    private toastr: ToastrService) { 
   }
 
   ngOnInit(): void {
@@ -33,6 +32,7 @@ export class ServiceComponent implements OnInit {
 
   habilitarAdd(){
     this.addOption = !this.addOption;
+    this.updateOption = false;
   }
   getAlServices() {
     this.dataService.all().subscribe((data: any) => {
@@ -49,13 +49,28 @@ export class ServiceComponent implements OnInit {
     }
   }
 
-  editService(element: any) {
-    console.log('editService', element);
+  sentData(element: any) {
+    this.updateOption = true;
+    this.addOption = false;
+    // agregar un elemento nuevo al array dataSent y eliminar el anterior
+    this.dataSent.splice(0,1,element);
   }
 
   deleteService(id: string) {
    try{
     this.dataService.delete(id).subscribe((data: any) => {
+      this.dataResponse = data;
+      if (this.dataResponse.code === 200) {
+        this.toastr.warning(
+          JSON.stringify(this.dataResponse.message),
+          JSON.stringify(this.dataResponse.status)
+        );
+      } else if (this.dataResponse.code === 404) {
+        this.toastr.error(
+          JSON.stringify(this.dataResponse.message),
+          JSON.stringify(this.dataResponse.status)
+        );
+      }
       this.getAlServices();
     });
    }catch(error){
